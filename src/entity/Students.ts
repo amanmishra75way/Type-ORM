@@ -5,15 +5,17 @@ export class Students {
   @PrimaryGeneratedColumn() // This will auto genrate the key called autoincreament
   id: number;
 
-  @Column()
+  @Column({
+    length: 100, //defining a lingth will prevent taking default length limit
+  })
   name: string;
 
   @Column()
   age: number;
 
-  @Column()
+  @Column("text")
   city: string;
 
-  @Column()
-  views: number;
+  @Column("float")
+  weight: number;
 }
