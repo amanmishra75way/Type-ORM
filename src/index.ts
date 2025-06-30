@@ -1,11 +1,13 @@
+import express from "express";
 import { AppDataSource } from "./data-source";
-import { User } from "./entity/User";
-import { Students } from "./entity/Students";
-AppDataSource.initialize()
-  .then(async () => {
-    const studentRepository = AppDataSource.getRepository(Students);
+import authRoutes from "./routes/auth.routes";
 
-    const allStudent = await studentRepository.deleteAll();
-    console.log("STUDENTS DETIALS ARE", allStudent);
-  })
-  .catch((error) => console.log(error));
+const app = express();
+app.use(express.json());
+
+app.use("/api/auth", authRoutes);
+
+AppDataSource.initialize().then(() => {
+  console.log("Connected to DB");
+  app.listen(3000, () => console.log("Server started on port 3000"));
+});
