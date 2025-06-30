@@ -1,8 +1,8 @@
-import { Entity, Column, PrimaryColumn } from "typeorm";
+import { Entity, Column, PrimaryColumn, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class Students {
-  @PrimaryColumn() // Every entity must have atleast one primary key
+  @PrimaryGeneratedColumn() // This will auto genrate the key called autoincreament
   id: number;
 
   @Column()
